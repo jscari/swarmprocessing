@@ -1,0 +1,125 @@
+<html>
+
+<body>
+
+<ul>
+<li><a href="http://blog.smola.org/post/977927287/parallel-stochastic-gradient-descent">parallel-stochastic-gradient-descent</a>
+<xmp>
+-Overpartition the data into k blocks for k clusters (i.e. for each cluster simply randomly draw a fraction c = O(m/k) of the entire dataset). 
+
+-Now perform stochastic gradient descent on each machine separately with constant learning rate.
+
+-Average the solutions between different machines. 
+
+Surprisingly enough this method can be shown to converge and give optimal speedup. A paper describing the proof for this simple algorithm is currently under review 
+(thanks to Marty Zinkevich, Markus Weimer and Lihong Li). 
+
+http://martin.zinkevich.org/publications/nips2010.pdf
+
+</xmp>
+</li>
+
+<li><a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a>
+<xmp>
+Monte Carlo methods (or Monte Carlo experiments) are a broad class of computational algorithms that rely on repeated random sampling to obtain numerical results. They are often used in physical and mathematical problems and are most useful when it is difficult or impossible to use other mathematical methods.
+
+
+Define a domain of possible inputs.
+
+Generate inputs randomly from a probability distribution over the domain.
+
+Perform a deterministic computation on the inputs.
+
+Aggregate the results.
+</xmp>
+</li>
+
+
+<li><a href="https://www.igvita.com/2009/03/07/collaborative-swarm-computing-notes">collaborative-swarm-computing-notes</a>
+<xmp>
+Some great comments and responses from the community
+</xmp>
+</li>
+
+<li><a href="https://blog.cloudera.com/blog/2014/07/estimating-financial-risk-with-apache-spark/">estimating-financial-risk-with-apache-spark/</a>
+<xmp>
+Monte Carlo simulation: This method, covered in this post, tries to avoid some of the assumptions in the methods described above. 
+In its most general form, this method:
+
+Defines a relationship between market conditions and each instrument’s returns
+
+Poses “trials” consisting of random market conditions
+
+Calculates the portfolio loss for each trial, and uses the aggregated trial data to build up a profile of the portfolio’s risk characteristics.
+</xmp>
+</li>
+
+<li><a href="https://en.wikipedia.org/wiki/Simulated_annealing">Simulated annealing</a>
+<xmp>
+Simulated annealing (SA) is a probabilistic technique for approximating the global optimum of a given function. 
+Specifically, it is a metaheuristic to approximate global optimization in a large search space. 
+It is often used when the search space is discrete (e.g., all tours that visit a given set of cities). 
+For problems where finding the precise global optimum is less important than finding an acceptable global optimum in a fixed amount of time, simulated annealing may be preferable to alternatives such as brute-force search or gradient descent.
+</xmp>
+</li>
+
+<li><a href="http://martin.zinkevich.org/publications/nips2010.pdf">Parallelized Stochastic Descent Gradient</a>
+<xmp>
+Algorithm 3 SimuParallelSGD(Examples {c1, . . . cm}, Learning Rate η, Machines k)
+
+Deﬁne T = [m/k]
+
+Randomly partition the examples, giving T examples to each machine.
+
+for all i in {1, . . . k} parallel do
+  Randomly shufﬂe the data on machine i.
+  Initialize w(i,0) = 0.
+  for all t in {1, . . . T }: do
+    Get the tth example on the ith machine (this machine), c(i,t)
+    w(i,t) ← w(i,t−1) − η∂(w)  ci*(wi,t−1)
+  end for
+end for
+Aggregate from all computers v = 1/k SUM(W(i,t) and return v.
+
+As a practical side-note, the shuffling before the stochastic step is usually left out. It requires to either rewrite the data or fully memory-map+shuffle it at every iteration- both are quite costly.
+</xmp>
+</li>
+
+
+<li><a href="https://www.quora.com/What-are-some-parallel-gradient-descent-algorithms">Quora - parallel gradient descent</a>
+<xmp>
+well, it's kind of a simple answer, but any batch gradient descent algorithm can be trivially parallelized 
+in each iteration by computing the gradient for each element of the training set in parallel, then running a fold over the results to sum them.  
+assuming you have n training set elements and p processors, this should take O(n/p + log(p)) time per iteration.
+</xmp>
+</li>
+
+<li><a href="http://martin-thoma.com/part-iii-matrix-multiplication-on-multiple-cores-in-python-java-and-c/">part-iii-matrix-multiplication-on-multiple-cores-in-python-java-and-c/</a>
+<xmp>
+Before we start implementing code for multiple processors, we have to get an algorithm that is actually parallelisable. 
+You could use Cannon's algorithm, a algorithm that makes use of systolic arrays or try to find a solution by your own. 
+The Scalable Universal Matrix Multiplication Algorithm (short: SUMMA) could also work.
+http://www.netlib.org/lapack/lawnspdf/lawn96.pdf
+The paper that I've linked is well-written and easy to understand. You should definitively read it, if you're interested in matrix multiplication.
+</xmp>
+</li>
+
+<li><a href="https://www.igvita.com/2009/03/07/collaborative-swarm-computing-notes">collaborative-swarm-computing-notes</a>
+<xmp>
+Some great comments and responses from the community
+</xmp>
+</li>
+
+<li><a href="https://ipythonquant.wordpress.com/2015/04/13/cva-calculation-with-quantlib-and-python/">/cva-calculation-with-quantlib-and-python/</a>
+<xmp>
+Some great comments and responses from the community
+</xmp>
+</li>
+
+
+/
+</ul>
+
+</body>
+
+</html>

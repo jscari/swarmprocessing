@@ -1,0 +1,24 @@
+<html>
+<body>
+<div>PI is <b>3.14159265359</b></div>
+<div>Current approximation : <span id="pi">?</span></div>
+<div>Swarm speed : <span id="speed">?</span></div>
+<script>
+var refreshApprox=function(){
+	var request = new XMLHttpRequest();
+	request.open('GET', '/pi', true);
+
+	request.onload = function() {
+	  if (request.status >= 200 && request.status < 400) {
+	    var data = JSON.parse(request.responseText);
+	    document.getElementById("pi").innerHTML=data.pi;
+	    document.getElementById("speed").innerHTML=Math.round(data.speed,2);
+	  }
+	};
+	request.send();
+};
+setInterval(refreshApprox,250);
+</script>
+<script type="text/javascript" src="/js/swarm.js"></script>
+</body>
+</html>
