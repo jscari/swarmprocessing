@@ -4,4 +4,4 @@ Compute pi using a distributed monte-carlo method over http. The more clients ar
 
 Clients and server are coded in Javascript. 
 
-The computation are made in background by webworkers. The same method could be used by websites, cpu of their visitors could be used for ditributed computing without the noticing or degrading their experience on the website.
+The computation are made in background by webworkers. The same method could be used by websites, cpu of their visitors would be used for ditributed computing without them noticing or degrading their experience on the website.
